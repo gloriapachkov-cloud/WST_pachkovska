@@ -1,0 +1,23 @@
+body {
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує заголовок та контейнер */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#team-container {
+    display: flex;
+    flex-wrap: wrap;         /* Картки переносяться, якщо не влазять */
+    justify-content: center; /* ЦЕНТРУЄ КАРТКИ ПО ГОРИЗОНТАЛІ */
+    align-items: center;    
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}

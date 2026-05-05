@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Канадські актори - Лабораторна 5</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Відомі канадські актори</h1>
+  </header>
+
+  <div id="team-container"></div>
+
+  <script type="module">
+    import { actors } from './usersList.js';
+    import './index.js';
+
+    const container = document.getElementById('team-container');
+
+    actors.forEach(actor => {
+      const card = document.createElement('user-card');
+      card.data = actor;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
