@@ -37,7 +37,7 @@ export const actors = [
   {
     name: "Сет Роґен",
     photo: "https://ovideo.ru/images/posters/0000/7649/0001.jpg",
-    birthday: "не встановлено",
+    birthday: "15.04.1982",
     city: "Ванкувер",
     country: "Канада"
   }

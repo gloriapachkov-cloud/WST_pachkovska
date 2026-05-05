@@ -14,7 +14,7 @@ class UserCard extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         :host {
-          display: block; /* Важливо для коректного відображення */
+          display: block; 
         }
 
         .card {
@@ -27,7 +27,7 @@ class UserCard extends HTMLElement {
           background: #ffffff;
           box-shadow: 0 4px 15px rgba(0,0,0,0.1);
           
-          /* ЦЕНТРУВАННЯ ВСЕРЕДИНІ КАРТКИ */
+          /ЦЕНТРУВАННЯ ВСЕРЕДИНІ КАРТКИ /
           display: flex;
           flex-direction: column;
           align-items: center; 
