@@ -12,13 +12,13 @@ import {
 import { Category } from "./types";
 
 // Завдання 1
-console.log("---------Завдання 1---------");
+console.log("Завдання 1");
 
 console.log(getAllWorkers());
 logFirstAvailable();
 
 // Завдання 2
-console.log("---------Завдання 2---------");
+console.log("Завдання 2");
 
 const surnames = getWorkersSurnamesByCategory(Category.Developer);
 logWorkersNames(surnames);
@@ -27,7 +27,7 @@ logWorkersNames(surnames);
 logWorkersNames(getWorkersSurnamesByCategory());
 
 // Завдання 3
-console.log("---------Завдання 3---------");
+console.log("Завдання 3");
 
 getAllWorkers()
     .filter(w => w.category === Category.Developer)
@@ -39,7 +39,7 @@ if (worker) {
 }
 
 // Завдання 4
-console.log("---------Завдання 4---------");
+console.log("Завдання 4");
 
 const myID: string = createCustomerID("Ivan", 1);
 console.log(myID);
@@ -57,7 +57,7 @@ idGenerator = createCustomerID;
 console.log(idGenerator("Ivan", 3));
 
 // Завдання 5
-console.log("---------Завдання 5---------");
+console.log("-Завдання 5");
 
 createCustomer("Ivan");
 createCustomer("Ivan", 18);
