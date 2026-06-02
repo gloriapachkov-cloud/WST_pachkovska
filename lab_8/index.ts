@@ -5,52 +5,55 @@ function describeProduct(p: IProduct): string {
   return p instanceof BaseEntity ? p.describe() : p.name;
 }
 
-//Товари
+//  Б'ЮТІ ТОВАРИ ТА ПОСЛУГИ 
 
-const croissant = new Product(1, "Круасан з вишнею", 85, "Випічка", true);
-const cookies = new Product(2, "Печиво з шоколадом", 70, "Випічка", true);
-const coffee = new Product(3, "Флет Вайт для Миколи Володимировича)))", 65, "Кава", true);
-const tiramisu = new Product(4, "Тірамісу", 280, "Торти", false);
-const napoleon = new Product(5, "Наполеон", 210, "Торти", true);
+const serum = new Product(1, "Зволожувальна сироватка з гіалуроновою кислотою", 450, "Догляд за обличчям", true);
+const patch = new Product(2, "Гідрогелеві патчі з пептидами", 320, "Догляд за обличчям", true);
+const makeupCourse = new Product(3, "Індивідуальний майстер-клас 'Макіяж для себе'", 1500, "Послуги та навчання", true);
+const lipstick = new Product(4, "Матова стійка помада (відтінок Nude)", 380, "Декоративна косметика", false); // Немає в наявності
+const mascara = new Product(5, "Туш для вій з ефектом об'єму", 290, "Декоративна косметика", true);
 
-const discountedCakeKyiv = new DiscountedProduct(6, "Київский торт", 210, "Торти", true, 15);
-const discountedBun = new DiscountedProduct(7, "Булочка з корицею", 65, "Випічка", true, 20);
+// Товари зі знижкою (акції салону)
+const discountedCream = new DiscountedProduct(6, "Нічний відновлювальний крем", 680, "Догляд за обличчям", true, 15); // -15%
+const discountedOil = new DiscountedProduct(7, "Олія для кутикули та нігтів", 120, "Догляд за тілом", true, 20); // -20%
 
-//ProductService
+//  PRODUCT SERVICE (Керування каталогом) 
 
 const productService = new ProductService();
 
-[croissant, cookies, coffee, tiramisu, napoleon, discountedCakeKyiv, discountedBun].forEach(
+[serum, patch, makeupCourse, lipstick, mascara, discountedCream, discountedOil].forEach(
   (p) => productService.addProduct(p)
 );
 
-console.log("=== Усі товари ===");
+console.log(" Усі товари та послуги салону ");
 productService.getAll().forEach((p) => console.log(describeProduct(p)));
 
-console.log("\n=== Категорія: Випічка ===");
-productService.getByCategory("Випічка").forEach((p) => console.log(describeProduct(p)));
+console.log("\n Категорія: Догляд за обличчям ");
+productService.getByCategory("Догляд за обличчям").forEach((p) => console.log(describeProduct(p)));
 
-console.log("\n=== Товари в наявності ===");
+console.log("\n Товари в наявності (доступні до замовлення) ");
 productService.getInStock().forEach((p) => console.log(describeProduct(p)));
 
-console.log("\n=== Generic-фільтр: ціна > 150 ===");
-const pricey = productService.getFiltered(productService.getAll(), (p) => p.price > 150);
+console.log("\n Generic-фільтр: преміум товари/послуги (ціна > 400 UAH) ");
+const pricey = productService.getFiltered(productService.getAll(), (p) => p.price > 400);
 pricey.forEach((p) => console.log(describeProduct(p)));
 
-//Cart
+//  CART (Кошик клієнта) 
 
 const cart = new Cart();
 
-cart.add(croissant);
-cart.add(discountedBun);
-cart.add(napoleon);
+// Клієнт обирає сироватку, курс макіяжу та нічний крем зі знижкою
+cart.add(serum);
+cart.add(makeupCourse);
+cart.add(discountedCream);
 
-console.log("\n=== Кошик (початковий) ===");
-cart.getItems().forEach((p) => console.log(`  - ${p.name} → ${p.price} UAH`));
-console.log(`Загальна сума: UAH ${cart.getTotal().toFixed(2)}`);
+console.log("\n Кошик клієнта (початковий) ");
+cart.getItems().forEach((p) => console.log(`   - ${p.name} → ${p.price} UAH`));
+console.log(`Загальна сума замовлення: UAH ${cart.getTotal().toFixed(2)}`);
 
-cart.remove(croissant.id);
+// Клієнт вирішив подумати над майстер-класом і видаляє його з кошика
+cart.remove(makeupCourse.id);
 
-console.log("\n=== Кошик після видалення круасана ===");
-cart.getItems().forEach((p) => console.log(`  - ${p.name} → ${p.price} UAH`));
-console.log(`Оновлена сума: UAH ${cart.getTotal().toFixed(2)}`);
+console.log("\n Кошик після видалення майстер-класу ");
+cart.getItems().forEach((p) => console.log(`   - ${p.name} → ${p.price} UAH`));
+console.log(`Оновлена сума до сплати: UAH ${cart.getTotal().toFixed(2)}`);
