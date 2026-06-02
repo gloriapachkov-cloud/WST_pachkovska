@@ -1,73 +1,61 @@
-import { IProduct, ICart } from './models';
+import { IProduct, ICart } from "./models";
 
 export class ProductService {
-    private products: IProduct[] = [];
+  private products: IProduct[] = [];
 
-    /** Додає товар до колекції з валідацією */
-    addProduct(product: IProduct): void {
-        if (product.price <= 0) {
-            console.error("Помилка: Ціна має бути більшою за 0");
-            return;
-        }
-        this.products.push(product);
-    }
+  public getAll(): IProduct[] {
+    return this.products;
+  }
 
-    /** Повертає всі товари */
-    getAll(): IProduct[] {
-        return this.products;
-    }
+  public getByCategory(category: string): IProduct[] {
+    return this.products.filter((p) => p.category === category);
+  }
 
-    /** Фільтрація за категорією */
-    getByCategory(category: string): IProduct[] {
-        return this.products.filter(p => p.category === category);
-    }
+  public getInStock(): IProduct[] {
+    return this.products.filter((p) => p.inStock);
+  }
 
-    /** Повертає товари в наявності */
-    getInStock(): IProduct[] {
-        return this.products.filter(p => p.inStock);
-    }
+  public findById(id: number): IProduct | undefined {
+    return this.products.find((p) => p.id === id);
+  }
 
-    /** Пошук за ID */
-    findById(id: number): IProduct | undefined {
-        return this.products.find(p => p.id === id);
+  public addProduct(product: IProduct): void {
+    if (product.price <= 0) {
+      throw new Error(`Ціна товару "${product.name}" має бути більше 0.`);
     }
+    this.products.push(product);
+  }
 
-    /** * Генерик-метод для фільтрації (на макс. бал)
-     */
-    getFiltered<T extends IProduct>(list: T[], predicate: (item: T) => boolean): T[] {
-        return list.filter(predicate);
-    }
+  public getFiltered<T extends IProduct>(list: T[], predicate: (item: T) => boolean): T[] {
+    return list.filter(predicate);
+  }
 }
 
-/**
- * Клас кошика
- */
 export class Cart implements ICart {
-    items: IProduct[] = [];
+  private _items: IProduct[] = [];
 
-    /** Додати товар до кошика */
-    add(product: IProduct): void {
-        this.items.push(product);
-    }
+  get items(): IProduct[] {
+    return this._items;
+  }
 
-    /** Видалити товар за ID */
-    remove(id: number): void {
-        this.items = this.items.filter(item => item.id !== id);
-    }
+  public add(product: IProduct): void {
+    this._items.push(product);
+  }
 
-    /** Розрахунок загальної вартості (округлення до 2 знаків) */
-    getTotal(): number {
-        const total = this.items.reduce((sum, item) => sum + item.price, 0);
-        return Math.round(total * 100) / 100;
-    }
+  public remove(id: number): void {
+    this._items = this._items.filter((p) => p.id !== id);
+  }
 
-    /** Отримати список товарів у кошику */
-    getItems(): IProduct[] {
-        return this.items;
-    }
+  public getTotal(): number {
+    const total = this._items.reduce((sum, p) => sum + p.price, 0);
+    return Math.round(total * 100) / 100;
+  }
 
-    /** Очистити кошик */
-    clear(): void {
-        this.items = [];
-    }
+  public getItems(): IProduct[] {
+    return this._items;
+  }
+
+  public clear(): void {
+    this._items = [];
+  }
 }

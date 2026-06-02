@@ -1,43 +1,56 @@
-import { Product, DiscountedProduct } from './models';
-import { ProductService, Cart } from './services';
+import { Product, DiscountedProduct, BaseEntity, IProduct } from "./models";
+import { ProductService, Cart } from "./services";
 
-const service = new ProductService();
+function describeProduct(p: IProduct): string {
+  return p instanceof BaseEntity ? p.describe() : p.name;
+}
+
+//Товари
+
+const croissant = new Product(1, "Круасан з вишнею", 85, "Випічка", true);
+const cookies = new Product(2, "Печиво з шоколадом", 70, "Випічка", true);
+const coffee = new Product(3, "Флет Вайт для Миколи Володимировича)))", 65, "Кава", true);
+const tiramisu = new Product(4, "Тірамісу", 280, "Торти", false);
+const napoleon = new Product(5, "Наполеон", 210, "Торти", true);
+
+const discountedCakeKyiv = new DiscountedProduct(6, "Київский торт", 210, "Торти", true, 15);
+const discountedBun = new DiscountedProduct(7, "Булочка з корицею", 65, "Випічка", true, 20);
+
+//ProductService
+
+const productService = new ProductService();
+
+[croissant, cookies, coffee, tiramisu, napoleon, discountedCakeKyiv, discountedBun].forEach(
+  (p) => productService.addProduct(p)
+);
+
+console.log("=== Усі товари ===");
+productService.getAll().forEach((p) => console.log(describeProduct(p)));
+
+console.log("\n=== Категорія: Випічка ===");
+productService.getByCategory("Випічка").forEach((p) => console.log(describeProduct(p)));
+
+console.log("\n=== Товари в наявності ===");
+productService.getInStock().forEach((p) => console.log(describeProduct(p)));
+
+console.log("\n=== Generic-фільтр: ціна > 150 ===");
+const pricey = productService.getFiltered(productService.getAll(), (p) => p.price > 150);
+pricey.forEach((p) => console.log(describeProduct(p)));
+
+//Cart
+
 const cart = new Cart();
 
-// 1. Створення товарів (5-7 штук)
-service.addProduct(new Product(1, "Laptop", 35000, "Electronics", true));
-service.addProduct(new Product(2, "Mouse", 1200, "Electronics", true));
-service.addProduct(new Product(3, "Keyboard", 2500, "Electronics", false));
-service.addProduct(new DiscountedProduct(4, "Phone Case", 500, "Accessories", true, 20));
-service.addProduct(new DiscountedProduct(5, "Screen Protector", 300, "Accessories", true, 10));
+cart.add(croissant);
+cart.add(discountedBun);
+cart.add(napoleon);
 
-// 2. Виведення в консоль
-console.log(" Всі товари:");
-service.getAll().forEach(p => console.log((p as Product).describe()));
+console.log("\n=== Кошик (початковий) ===");
+cart.getItems().forEach((p) => console.log(`  - ${p.name} → ${p.price} UAH`));
+console.log(`Загальна сума: UAH ${cart.getTotal().toFixed(2)}`);
 
-console.log("\n Товари категорії 'Electronics': ");
-console.table(service.getByCategory("Electronics"));
+cart.remove(croissant.id);
 
-console.log("\n Товари в наявності: ");
-console.table(service.getInStock());
-
-// 3. Робота з кошиком
-console.log("\n Робота з кошиком: ");
-const prod1 = service.findById(1);
-const prod4 = service.findById(4);
-
-if (prod1) cart.add(prod1);
-if (prod4) cart.add(prod4);
-
-console.log("Товари в кошику:", cart.getItems().map(i => i.name));
-console.log("Загальна сума:", cart.getTotal(), "UAH");
-
-// 4. Видалення товару
-console.log("\nВидалення товару з ID 1");
-cart.remove(1);
-console.log("Оновлена сума:", cart.getTotal(), "UAH");
-
-// 5. Перевірка Generic методу (на макс. бал)
-const electronics = service.getFiltered(service.getAll(), (p) => p.category === "Electronics");
-console.log("\n Результат Generic фільтрації (Electronics):");
-console.log(electronics.length, "товари знайдено.");
+console.log("\n=== Кошик після видалення круасана ===");
+cart.getItems().forEach((p) => console.log(`  - ${p.name} → ${p.price} UAH`));
+console.log(`Оновлена сума: UAH ${cart.getTotal().toFixed(2)}`);
