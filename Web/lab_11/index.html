@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachinder</title>
+    <link rel="stylesheet" href="scss/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header__top">
+                <div class="header__logo">Teachinder</div>
+                <div class="header__search">
+                    <input type="text" id="searchInput" placeholder="Name, note or age to search">
+                    <button class="btn btn--outline" id="searchBtn">Search</button>
+                </div>
+            </div>
+            <div class="header__bottom">
+                <nav class="nav">
+                    <a href="#teachers" class="nav__link nav__link--active">Teachers</a>
+                    <a href="#statistics" class="nav__link">Statistics</a>
+                    <a href="#favorites" class="nav__link">Favorites</a>
+                    <a href="#about" class="nav__link">About</a>
+                </nav>
+                <button class="btn btn--outline add-teacher-btn">Add teacher</button>
+            </div>
+        </header>
+
+        <main class="main">
+            <hr class="divider">
+            <section class="top-teachers" id="teachers">
+                <h2 class="section-title">Top Teachers</h2>
+                
+                <div class="filters">
+    <div class="filters__group">
+        <label for="ageFilter">Age</label>
+        <select id="ageFilter">
+            <option value="all">All</option>
+            <option value="18-31">18-31</option>
+            <option value="32-50">32-50</option>
+            <option value="51+">51+</option>
+        </select>
+    </div>
+    <div class="filters__group">
+        <label for="regionFilter">Region</label>
+        <select id="regionFilter">
+            <option value="all">All</option>
+            <option value="Europe">Europe</option>
+            <option value="Asia">Asia</option>
+            <option value="Americas">Americas</option>
+        </select>
+    </div>
+    <div class="filters__group">
+        <label for="sexFilter">Sex</label>
+        <select id="sexFilter">
+            <option value="all">All</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+    <div class="filters__checkbox">
+        <input type="checkbox" id="onlyPhoto">
+        <label for="onlyPhoto">Only with photo</label>
+    </div>
+    <div class="filters__checkbox">
+        <input type="checkbox" id="onlyFav">
+        <label for="onlyFav">Only favorites</label>
+    </div>
+</div>
+
+                <div class="teachers-grid">
+                    <div class="teacher-card">
+                        <div class="teacher-card__image-wrapper">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ihor" class="teacher-card__img">
+                            <span class="teacher-card__star">☆</span>
+                        </div>
+                        <h3 class="teacher-card__name">Ihor Tkachuck</h3>
+                        <p class="teacher-card__subject">Chemistry</p>
+                        <p class="teacher-card__country">Ukraine</p>
+                    </div>
+                    </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="statistics" id="statistics">
+                <h2 class="section-title">Statistics</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="active-sort">Speciality ↓</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Nationality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Daisy Alexander</td>
+                            <td>Chemistry</td>
+                            <td>28</td>
+                            <td>Female</td>
+                            <td>Vietnam</td>
+                        </tr>
+                        <tr>
+                            <td>Julia Bradley</td>
+                            <td>Math</td>
+                            <td>26</td>
+                            <td>Female</td>
+                            <td>USA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <span class="pagination__page">1</span>
+                    <a href="#" class="pagination__link">2</a>
+                    <a href="#" class="pagination__link">3</a>
+                    <span>...</span>
+                    <a href="#" class="pagination__link">Last</a>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="favorites" id="favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div class="favorites-slider">
+                    <button class="slider-arrow">&lt;</button>
+                    <div class="favorites-list">
+                        <div class="teacher-card">
+                            <div class="teacher-card__image-wrapper">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anna" class="teacher-card__img">
+                            </div>
+                            <h3 class="teacher-card__name">Anna Muzychuk</h3>
+                            <p class="teacher-card__subject">Chess</p>
+                            <p class="teacher-card__country">USA</p>
+                        </div>
+                    </div>
+                    <button class="slider-arrow">&gt;</button>
+                </div>
+            </section>
+            <hr class="divider">
+            <section class="about" id="about" style="margin-bottom: 40px;">
+        <p style="margin-bottom: 15px; line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facere, hic impedit itaque molestiae sit tempore? Ea in mollitia natus rerum voluptates. Eos excepturi facere tempora. Aliquid asperiores hic impedit iusto natus quaerat ratione sit? Culpa iusto optio voluptas voluptate. Enim eveniet fugit iure maiores molestiae, praesentium quia.</p>
+        <p style="margin-bottom: 15px; line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eligendi illum in inventore ipsum odio officiis omnis quisquam sed tempora?</p>
+        <p style="line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque esse expedita id iusto mollitia, odit sint ullam veritatis vero?</p>
+    </section>
+        </main>
+       
+
+        <footer class="footer">
+            
+            <div class="footer__bottom">
+                <nav class="nav">
+                    <a href="#teachers" class="nav__link">Teachers</a>
+                    <a href="#statistics" class="nav__link">Statistics</a>
+                    <a href="#favorites" class="nav__link">Favorites</a>
+                    <a href="#about" class="nav__link">About</a>
+                </nav>
+                <button class="btn btn--outline add-teacher-btn">Add teacher</button>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="addTeacherModal" style="display: none;">
+        <div class="modal">
+            <div class="modal__header">
+                <h2>Add Teacher</h2>
+                <button class="modal__close">✖</button>
+            </div>
+            <form class="modal__body form">
+                <div class="form__group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter name">
+                </div>
+                <div class="form__group">
+                    <label>Speciality</label>
+                    <select><option>Mathematics</option></select>
+                </div>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label>Country</label>
+                        <select><option>Ukraine</option></select>
+                    </div>
+                    <div class="form__group">
+                        <label>City</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label>Email</label>
+                        <input type="email">
+                    </div>
+                    <div class="form__group">
+                        <label>Phone</label>
+                        <input type="tel">
+                    </div>
+                </div>
+                <div class="form__group" style="width: 50%;">
+                    <label>Date of birth</label>
+                    <input type="date">
+                </div>
+                <div class="form__row form__row--align-center">
+                    <label>Sex</label>
+                    <label><input type="radio" name="sex" value="male"> Male</label>
+                    <label><input type="radio" name="sex" value="female"> Female</label>
+                </div>
+                <div class="form__row form__row--align-center">
+                    <label>Background color</label>
+                    <input type="color" value="#ffffff">
+                </div>
+                <div class="form__group">
+                    <label>Notes (optional)</label>
+                    <textarea rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="infoModal" style="display: none;">
+        <div class="modal">
+            <div class="modal__header">
+                <h2>Teacher Info</h2>
+                <button class="modal__close">✖</button>
+            </div>
+            <div class="modal__body teacher-info">
+                <div class="teacher-info__top">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ihor Tkachuck">
+                    <div class="teacher-info__details">
+                        <div class="teacher-info__name-row">
+                            <h3>Ihor Tkachuck</h3>
+                            <span class="star-icon">☆</span>
+                        </div>
+                        <p class="bold">Chemistry</p>
+                        <p>Kyiv, Ukraina</p>
+                        <p>35, Male</p>
+                        <a href="mailto:ihortkachuk@gmail.com" class="link">ihortkachuk@gmail.com</a>
+                        <p>+380964993252</p>
+                    </div>
+                </div>
+                <p class="teacher-info__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <a href="#" class="link link--dashed">toggle map</a>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

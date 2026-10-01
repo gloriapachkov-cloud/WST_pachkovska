@@ -1,0 +1,219 @@
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdf5f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+.header {
+    background: linear-gradient(135deg, #d94670, #c084a0);
+    color: white;
+    padding: 45px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+
+.header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.main {
+    padding: 30px 0;
+}
+
+.card {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+.card h2 {
+    margin-top: 0;
+    color: #be185d;
+}
+
+.features-list {
+    padding-left: 20px;
+}
+
+.features-list li {
+    margin-bottom: 8px;
+}
+
+
+.service-select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #d8a5b5;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+}
+
+
+
+.client-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #d8a5b5;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #d94670;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.button:hover {
+    background-color: #be185d;
+}
+
+
+.message {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+
+.appointments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.appointment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fce7f3;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+
+
+.appointment-text {
+    margin-right: 10px;
+}
+
+
+.delete-button {
+    padding: 8px 12px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+.delete-button:hover {
+    background-color: #b91c1c;
+}
+
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+
+.tech-table th,
+.tech-table td {
+    border: 1px solid #e5b8c7;
+    padding: 12px;
+    text-align: left;
+}
+
+
+.tech-table th {
+    background-color: #d94670;
+    color: white;
+}
+
+
+.footer {
+    text-align: center;
+    background-color: #4a2533;
+    color: white;
+    padding: 18px;
+    margin-top: 20px;
+}
+
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 600px) {
+
+    .header {
+        padding: 28px 0;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .appointment-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .delete-button {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .tech-table th,
+    .tech-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

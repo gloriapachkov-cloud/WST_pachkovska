@@ -32,30 +32,30 @@ export class ProductService {
 }
 
 export class Cart implements ICart {
-  private _items: IProduct[] = [];
+  private items: IProduct[] = [];
 
   get items(): IProduct[] {
-    return this._items;
+    return this.items;
   }
 
   public add(product: IProduct): void {
-    this._items.push(product);
+    this.items.push(product);
   }
 
   public remove(id: number): void {
-    this._items = this._items.filter((p) => p.id !== id);
+    this.items = this.items.filter((p) => p.id !== id);
   }
 
   public getTotal(): number {
-    const total = this._items.reduce((sum, p) => sum + p.price, 0);
+    const total = this.items.reduce((sum, p) => sum + p.price, 0);
     return Math.round(total * 100) / 100;
   }
 
   public getItems(): IProduct[] {
-    return this._items;
+    return this.items;
   }
 
   public clear(): void {
-    this._items = [];
+    this.items = [];
   }
 }
