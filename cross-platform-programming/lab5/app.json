@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "RE:BELLE Beauty Studio",
+    "slug": "rebelle-lab5",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true
+    }
+  }
+}
