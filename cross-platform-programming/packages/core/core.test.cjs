@@ -1,0 +1,18 @@
+const test=require('node:test'); const assert=require('node:assert/strict'); const c=require('./index.cjs');
+const b={clientName:'Anna',service:'Manicure',date:'2026-12-01'};
+test('valid booking',()=>assert.equal(c.validateBooking(b).ok,true));
+test('empty client',()=>assert.equal(c.validateBooking({...b,clientName:' '}).ok,false));
+test('empty service',()=>assert.equal(c.validateBooking({...b,service:''}).ok,false));
+test('invalid date',()=>assert.equal(c.validateBooking({...b,date:'2026-02-30'}).ok,false));
+test('long client name',()=>assert.equal(c.validateBooking({...b,clientName:'a'.repeat(c.MAX_CLIENT_LENGTH+1)}).ok,false));
+test('phone validation',()=>assert.equal(c.validateBooking({...b,phone:'123'}, {requirePhone:true}).ok,false));
+test('phone valid',()=>assert.equal(c.validateBooking({...b,phone:'+380991234567'}, {requirePhone:true}).ok,true));
+test('time validation',()=>assert.equal(c.validateBooking({...b,time:'26:00'}, {requireTime:true}).ok,false));
+test('minutes',()=>assert.equal(c.minutes('09:30'),570));
+test('sort does not mutate',()=>{const a=[{id:'2',date:'2026-12-03'},{id:'1',date:'2026-12-01'}];assert.equal(c.sortBookings(a)[0].id,'1');assert.equal(a[0].id,'2')});
+test('search ignores case',()=>assert.equal(c.searchBookings([{client:'Anna'}],'ann').length,1));
+test('add booking',()=>assert.equal(c.addBooking([],b).length,1));
+test('remove booking',()=>assert.equal(c.removeBooking([{id:'a'}],'a').length,0));
+test('toggle booking',()=>assert.equal(c.toggleBooking([{id:'a',completed:false}],'a')[0].completed,true));
+test('detect overlap',()=>assert.equal(c.overlaps([{date:'2026-12-01',master:'Anna',time:'10:00',duration:60,status:'Очікує'}],{date:'2026-12-01',master:'Anna',time:'10:30',duration:60}),true));
+test('ignore cancelled overlap',()=>assert.equal(c.overlaps([{date:'2026-12-01',master:'Anna',time:'10:00',duration:60,status:'Скасовано'}],{date:'2026-12-01',master:'Anna',time:'10:30',duration:60}),false));

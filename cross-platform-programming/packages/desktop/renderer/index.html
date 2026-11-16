@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>RE:BELLE Desktop</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body><main class="shell">
+<header class="hero"><p class="eyebrow">BEAUTY STUDIO · APPOINTMENTS</p><h1>RE:BELLE</h1><p class="tagline">your beauty, your moment</p><div class="hero-bottom"><span>DESKTOP BOOKING STUDIO</span><span class="dot"></span><span>LABORATORY WORK №6</span></div></header>
+<section id="authScreen" class="auth-panel panel"><p class="section-kicker">WELCOME TO RE:BELLE</p><h2 id="authTitle">Вхід у систему</h2>
+<div class="filters"><button type="button" class="filter selected" id="loginTab">Увійти</button><button type="button" class="filter" id="registerTab">Реєстрація клієнта</button></div>
+<form id="authForm"><div id="registerNameWrap" hidden><label for="registerName">ВАШЕ ІМ’Я</label><input id="registerName" maxlength="80" autocomplete="name"></div>
+<label for="username">ЛОГІН</label><input id="username" autocomplete="username" maxlength="40" required placeholder="admin / master / ваш логін">
+<label for="password">ПАРОЛЬ</label><input id="password" type="password" autocomplete="current-password" required placeholder="Введіть пароль">
+<button class="primary" type="submit" id="authSubmit">Увійти</button><p id="authMessage" class="message" role="status"></p></form>
+<p class="hint">Демонстраційні облікові записи адміністратора та майстра вказані в README. Клієнт створює власний обліковий запис.</p></section>
+<div id="appScreen" hidden>
+<div class="session-bar"><div><span class="section-kicker">ОСОБИСТИЙ КАБІНЕТ</span><strong id="sessionName"></strong><span id="sessionRole" class="pill"></span></div><button id="logoutButton" class="filter" type="button">Вийти</button></div>
+<section class="dashboard" aria-label="Статистика"><div><strong id="totalCount">0</strong><span>ЗАПИСІВ</span></div><div><strong id="activeCount">0</strong><span>АКТИВНІ</span></div><div><strong id="completedCount">0</strong><span>ВИКОНАНО</span></div></section>
+<div class="columns">
+<section id="bookingPanel" class="panel form-panel"><p class="section-kicker">BOOK AN APPOINTMENT</p><h2>Новий запис</h2><form id="bookingForm" novalidate>
+<div id="clientNameWrap"><label for="clientName">ІМ’Я КЛІЄНТА</label><input id="clientName" maxlength="80" placeholder="Ваше ім’я"></div>
+<label for="phone">НОМЕР ТЕЛЕФОНУ</label><input id="phone" type="tel" maxlength="25" placeholder="+380 XX XXX XX XX">
+<label for="category">НАПРЯМОК КРАСИ</label><select id="category"></select>
+<label for="service">ОБЕРІТЬ ПОСЛУГУ</label><select id="service"></select>
+<label for="master">ОБЕРІТЬ МАЙСТРА</label><select id="master"></select>
+<div class="field-row"><div><label for="date">ДАТА</label><input id="date" type="date"></div><div><label for="time">ЧАС</label><select id="time"></select></div>
+<div class="price"><span id="durationText">Тривалість: —</span><strong id="priceText">— ₴</strong></div><button class="primary" type="submit">Підтвердити запис</button></form></section>
+<section class="panel list-panel"><div class="list-header"><div><p class="section-kicker">APPOINTMENTS</p><h2 id="listTitle">Мої записи</h2></div><span class="pill">RE:BELLE</span></div>
+<div class="filters"><button class="filter selected" type="button" data-filter="all">Усі</button><button class="filter" type="button" data-filter="active">Активні</button><button class="filter" type="button" data-filter="completed">Виконано</button></div>
+<ul id="notesList" class="bookings"></ul><div id="emptyState" class="empty"><div class="flower">✿</div><h3>Записів поки немає</h3><p>Нові записи з’являться тут.</p></div></section></div>
+<section id="adminPanel" class="panel admin-panel" hidden><p class="section-kicker">ADMIN CONTROL</p><h2>Керування салоном</h2><div class="columns">
+<div><h3>Послуги</h3><form id="serviceForm"><label for="serviceName">НАЗВА</label><input id="serviceName" maxlength="80" required><label for="serviceCategory">НАПРЯМОК</label><select id="serviceCategory"></select><div class="field-row"><div><label for="servicePrice">ЦІНА, ₴</label><input id="servicePrice" type="number" min="1" max="100000" required></div><div><label for="serviceDuration">ХВИЛИН</label><input id="serviceDuration" type="number" min="15" max="480" required></div></div><button class="primary" type="submit">Додати послугу</button></form><ul id="servicesAdmin" class="admin-list"></ul></div>
+<div><h3>Майстри</h3><form id="masterForm"><label for="masterName">ІМ’Я МАЙСТРА</label><input id="masterName" maxlength="80" required><label for="masterCategory">НАПРЯМОК</label><select id="masterCategory"></select><button class="primary" type="submit">Додати майстра</button></form><ul id="mastersAdmin" class="admin-list"></ul></div></div></section>
+<p id="message" class="message global-message" role="status" aria-live="polite"></p></div>
+<footer>RE:BELLE · BEAUTY STUDIO <span>© 2026</span></footer></main></body></html>

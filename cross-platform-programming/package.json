@@ -1,0 +1,16 @@
+{
+  "name": "rebelle-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start:web": "node scripts/sync-core.mjs && npm run dev -w @rebelle/web -- --host 127.0.0.1",
+    "start:desktop": "node scripts/sync-core.mjs && npm run start -w @rebelle/desktop",
+    "test": "node scripts/sync-core.mjs && node --test packages/core/*.test.cjs packages/web/tests/*.test.cjs packages/desktop/tests/*.test.cjs",
+    "test:core": "node scripts/sync-core.mjs && node --test packages/core/*.test.cjs",
+    "build:web": "node scripts/sync-core.mjs && npm run build -w @rebelle/web",
+    "sync:core": "node scripts/sync-core.mjs"
+  }
+}
